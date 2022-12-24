@@ -9,9 +9,75 @@ const ViewEngine = configViewEngine.configViewEngine(app);
 app.use(express.static(path.join(__dirname, "/public/")));
 
 app.get('/', async (req, res) => {
-    const Query1 = await mssqlConfig.queryExample1() //require('./index').queryExample1
+    //const Query1 = await mssqlConfig.queryExample1() //require('./index').queryExample1
     res.render('Home.ejs')
     //res.json(Query1.recordset)
+})
+
+app.get('/Home', async (req, res) => {
+    //const Query1 = await mssqlConfig.queryExample1() //require('./index').queryExample1
+    res.render('Home.ejs')
+    //res.json(Query1.recordset)
+})
+
+app.get('/search', async (req, res) => {
+    try {
+        console.log(req.query.keyword);
+        const result = await mssqlConfig.TraCuuMonAn(req.query.keyword);
+        const monAn = result.recordsets[0][0];
+        res.render('Search.ejs', { monAn });
+        // console.log(result);
+    }
+    catch (err) {
+        res.render('Error.ejs', { message: "Món ăn này không tồn tại " });
+    }
+})
+
+app.get('/Login', async (req, res) => {
+    try {
+        //console.log(req.query.TenTK);
+        //console.log(req.query.MatKhau);
+        res.render('Login.ejs');
+    }
+    catch (err) {
+        res.render('Error.ejs', { message: "Đăng nhập thất bại " });
+    }
+})
+
+app.get('/Login/LoginSucess', async (req, res) => {
+    try {
+        console.log(req.query.TenTK);
+        console.log(req.query.MatKhau);
+        const result = await mssqlConfig.LogIn_All(req.query.TenTK, req.query.MatKhau);
+        const Ketqua = result.recordsets[0][0]
+        res.render('LoginSucess.ejs', { Ketqua });
+    }
+    catch (err) {
+        res.render('Error.ejs', { message: "Đăng nhập thất bại! Kiểm tra lại tên tài khoản hoặc mật khẩu!" });
+    }
+})
+
+app.get('/SignUp', async (req, res) => {
+    try {
+        res.render('SignUp.ejs');
+    }
+    catch (err) {
+        res.render('Error.ejs', { message: "Đăng ký thất bại " });
+    }
+})
+
+app.get('/SignUp/SignUpSucess', async (req, res) => {
+    try {
+        console.log(req.query.TenTK);
+        console.log(req.query.MatKhau);
+        console.log(req.query.LoaiTK);
+        const result = await mssqlConfig.SignUp_All(req.query.TenTK, req.query.MatKhau, req.query.LoaiTK);
+        const Ketqua = result.recordsets[0][0]
+        res.render('SignUpSucess.ejs', { Ketqua });
+    }
+    catch (err) {
+        res.render('Error.ejs', { message: "Đăng ký thất bại! Tên tài khoản đã có người dùng! " });
+    }
 })
 
 app.listen(port, () => {

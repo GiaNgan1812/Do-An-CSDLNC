@@ -1,18 +1,4 @@
 const { sql, poolPromise } = require("./databases/mssql.database");
-// //const monanCardTemplate = document.querySelector("[data-monan-template]")
-
-// const searchInput = document.querySelector("[data-search]")
-// let users = []
-
-// searchInput.addEventListener("input", e => {
-//     const value = e.target.value.toLowerCase()
-//     users.forEach(user => {
-//         const isVisible =
-//             user.name.toLowerCase().includes(value) ||
-//             user.email.toLowerCase().includes(value)
-//         user.element.classList.toggle("hide", !isVisible)
-//     })
-// })
 
 const queryExample1 = async () => {
     try {
@@ -43,25 +29,50 @@ const TraCuuMonAn = async (TenMonAn) => {
     }
 }
 
-const queryExample2 = async (ma_khachhang) => {
+const LogIn_All = async (TenTK, MatKhau) => {
     try {
-        console.log("ma_khachhang###", ma_khachhang);
+        console.log("TenTK###", TenTK);
+        console.log("MatKhau###", MatKhau);
         const pool = await poolPromise;
         const result = await pool
             .request()
-            .input("makh", ma_khachhang)
-            .query("Exec LogIn_All 'Claire Sanford' 'DGSC29'");
+            .input("TenTK", TenTK)
+            .input("MatKhau", MatKhau)
+            .query("Exec LogIn_All @TenTK, @MatKhau");
 
-        console.table(result.recordset);
+        console.log(result);
 
         return result;
-    } catch (err) {
-        console.error(err);
     }
-};
+    catch (err) {
 
+    }
+}
+
+const SignUp_All = async (TenTK, MatKhau, LoaiTK) => {
+    try {
+        console.log("TenTK###", TenTK);
+        console.log("MatKhau###", MatKhau);
+        console.log("LoaiTK###", LoaiTK);
+        const pool = await poolPromise;
+        const result = await pool
+            .request()
+            .input("TenTK", TenTK)
+            .input("MatKhau", MatKhau)
+            .input("LoaiTK", LoaiTK)
+            .query("Exec SignUp_All @TenTK, @MatKhau, @LoaiTK");
+
+        console.log(result);
+
+        return result;
+    }
+    catch (err) {
+
+    }
+}
 module.exports = {
     queryExample1,
-    queryExample2,
-    TraCuuMonAn
+    TraCuuMonAn,
+    LogIn_All,
+    SignUp_All
 }
