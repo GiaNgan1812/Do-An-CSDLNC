@@ -80,6 +80,29 @@ app.get('/SignUp/SignUpSucess', async (req, res) => {
     }
 })
 
+app.get('/EditTK', async (req, res) => {
+    try {
+        res.render('EditTK.ejs');
+    }
+    catch (err) {
+        res.render('Error.ejs', { message: "Chỉnh sửa thất bại " });
+    }
+})
+
+app.get('/EditTK/EditSucess', async (req, res) => {
+    try {
+        console.log(req.query.TenTK);
+        console.log(req.query.MatKhau);
+        console.log(req.query.MaTK);
+        const result = await mssqlConfig.Edit_All(req.query.MaTK, req.query.TenTK, req.query.MatKhau);
+        const Ketqua = result.recordsets[0][0]
+        res.render('EditSucess.ejs', { Ketqua });
+    }
+    catch (err) {
+        res.render('Error.ejs', { message: "Đăng ký thất bại! Tên tài khoản đã có người dùng! " });
+    }
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`)
 })

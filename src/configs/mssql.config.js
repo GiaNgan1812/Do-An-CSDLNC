@@ -1,10 +1,8 @@
 module.exports = {
     server: "DESKTOP-Q8CECPE\\SQLSERVER",
     driver: "msnodesqlv8",
-    database: "QLyDatHang",
+    database: "QLyDatHang_CSDL",
     options: {
         trustedConnection: true,
     },
-    username: "sa",
-    password: "abc123"
 };

@@ -70,9 +70,33 @@ const SignUp_All = async (TenTK, MatKhau, LoaiTK) => {
 
     }
 }
+
+const Edit_All = async (MaTK, TenTK, MatKhau) => {
+    try {
+        console.log("TenTK###", TenTK);
+        console.log("MatKhau###", MatKhau);
+        console.log("MaTK###", MaTK);
+        const pool = await poolPromise;
+        const result = await pool
+            .request()
+            .input("TenTK", TenTK)
+            .input("MatKhau", MatKhau)
+            .input("MaTK", MaTK)
+            .query("Exec Edit_All @MaTK, @TenTK, @MatKhau");
+
+        console.log(result);
+
+        return result;
+    }
+    catch (err) {
+
+    }
+}
+
 module.exports = {
     queryExample1,
     TraCuuMonAn,
     LogIn_All,
-    SignUp_All
+    SignUp_All,
+    Edit_All
 }

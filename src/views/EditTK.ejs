@@ -22,23 +22,24 @@
         </form>
     </div>
     <br>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4">Tên tài khoản: <%= Ketqua.TenTaiKhoan %>
-            </h1>
-            <p class="lead">Mã tài khoản: <%= Ketqua.MaTK %>
-            </p>
-            <p class="lead">Loại tài khoản: <%= Ketqua.LoaiTK %>
-            </p>
-            <p class="lead">Tình trạng: <%= Ketqua.TinhTrang %>
-            </p>
+    <form action="/EditTK/EditSucess">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Tên tài khoản</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="TenTK"
+                placeholder="Nhập tên tài khoản">
         </div>
-    </div>
-
-    <a href="/EditTK">
-        <button id="searchB" type="submit" class="fa fa-search"> Chỉnh sửa tài khoản
-        </button>
-    </a>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Mật khẩu</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="MatKhau"
+                placeholder="Nhập mật khẩu">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Mã tài khoản</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="MaTK"
+                placeholder="Nhập mã tài khoản">
+        </div>
+        <button type="submit" class="btn btn-primary">Gửi</button>
+    </form>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
