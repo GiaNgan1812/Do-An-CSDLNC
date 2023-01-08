@@ -71,7 +71,7 @@ app.get('/SignUp/SignUpSucess', async (req, res) => {
         console.log(req.query.TenTK);
         console.log(req.query.MatKhau);
         console.log(req.query.LoaiTK);
-        const result = await mssqlConfig.SignUp_All(req.query.TenTK, req.query.MatKhau, req.query.LoaiTK);
+        const result = await mssqlConfig.SignUp_All(req.query.TenTK, req.query.MatKhau, req.query.LoaiTK, req.query.CMND, req.query.Sdt, req.query.Email, req.query.SoNha, req.query.Duong, req.query.Quan, req.query.ThanhPho);
         const Ketqua = result.recordsets[0][0]
         res.render('SignUpSucess.ejs', { Ketqua });
     }

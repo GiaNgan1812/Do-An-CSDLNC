@@ -49,18 +49,32 @@ const LogIn_All = async (TenTK, MatKhau) => {
     }
 }
 
-const SignUp_All = async (TenTK, MatKhau, LoaiTK) => {
+const SignUp_All = async (TenTK, MatKhau, LoaiTK, CMND, Sdt, Email, SoNha, Duong, Quan, ThanhPho) => {
     try {
         console.log("TenTK###", TenTK);
         console.log("MatKhau###", MatKhau);
         console.log("LoaiTK###", LoaiTK);
+        console.log("CMND###", CMND);
+        console.log("Sdt###", Sdt);
+        console.log("Email###", Email);
+        console.log("SoNha###", SoNha);
+        console.log("Duong###", Duong);
+        console.log("Quan###", Quan);
+        console.log("Thanhpho###", ThanhPho);
         const pool = await poolPromise;
         const result = await pool
             .request()
             .input("TenTK", TenTK)
             .input("MatKhau", MatKhau)
             .input("LoaiTK", LoaiTK)
-            .query("Exec SignUp_All @TenTK, @MatKhau, @LoaiTK");
+            .input("CMND", CMND)
+            .input("Sdt", Sdt)
+            .input("Email", Email)
+            .input("SoNha", SoNha)
+            .input("Duong", Duong)
+            .input("Quan", Quan)
+            .input("ThanhPho", ThanhPho)
+            .query("Exec SignUp_All @TenTK, @MatKhau, @LoaiTK, @CMND, @Sdt, @Email, @SoNha, @Duong, @Quan, @ThanhPho");
 
         console.log(result);
 
