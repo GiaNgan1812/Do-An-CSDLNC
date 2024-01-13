@@ -20,3 +20,5 @@ cập nhập.
   -  Phân hệ nhân viên: Xem danh sách hợp đồng của đối tác, Tạo hợp đồng, Quản lý hợp đồng, Gửi thông báo gia hạn hợp đồng
  
   -  Phân hệ admin: Chức năng quản trị người dùng (admin, nhân viên, đối tác, khách hàng, tài xế): Xóa tài khoản, Khóa tài khoản, Phân quyền người dùng, Cập nhật quyền, Xóa quyền, Kích hoạt tài khoản
+
+Báo cáo: https://drive.google.com/file/d/1SpSIz9xkQnZWFpSMnMAvLbvwcVIpKBdN/view?usp=sharing 
